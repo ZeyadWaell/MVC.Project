@@ -1,0 +1,53 @@
+﻿<script>
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-bottom-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+@if (TempData["warning"] != null)
+{
+    <script>
+        toastr["warning"]("", "@TempData["warning"]")
+    </script>
+    TempData["warning"] = null;
+}
+else if (TempData["info"] != null)
+{
+ 
+    <script>
+        toastr["info"]("", "@TempData["info"]")
+    </script>
+    TempData["info"] = null;
+}
+else if (TempData["success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        toastr.success('@TempData["success"]'', "success");
+    </script>
+    TempData["success"] = null;
+}
+else if (TempData["error"] != null)
+{
+    <script>
+        debugger
+        toastr["error"]("", "@TempData["error"]")
+    </script>
+    TempData["error"] = null;
+}

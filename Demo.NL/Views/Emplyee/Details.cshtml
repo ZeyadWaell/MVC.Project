@@ -1,0 +1,67 @@
+﻿@model EmployeModelView
+@inject IDepartmentRepostory depsRepos
+@{
+    ViewData["Title"] = "Detaile";
+    var Departments = new SelectList(depsRepos.GetAll().Result, "Id", "Name");
+}
+<h1>Detalies</h1>
+<div class="row">
+    <div class="col-6">
+                  <div class="form-group">
+                <label asp-for="@Model.Age" class="col-form-lable"></label>
+                <input asp-for="@Model.Age" class="form-control" readonly />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="col-form-lable"></label>
+            <input asp-for="@Model.Name" class="form-control" readonly />
+             
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Address" class="col-form-lable"></label>
+            <input asp-for="@Model.Address" class="form-control" readonly />
+            
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Salary" class="col-form-lable"></label>
+            <input asp-for="@Model.Salary" class="form-control" readonly />
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Email" class="col-form-lable"></label>
+            <input asp-for="@Model.Email" class="form-control" readonly />
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.DepartmentId" class="col-form-lable"></label>
+            <select asp-for="@Model.DepartmentId" asp-items="Departments" class="form-control" readonly>
+                    <option>----Select Department</option>
+                </select>
+               
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Date" class="col-form-lable"></label>
+            <input asp-for="@Model.Date" class="form-control" readonly />
+           
+            </div>
+            @*            <div class="form-group">
+            <label asp-for="@Model.DateOfCreation" class="col-form-lable"></label>
+            <input asp-for="@Model.DateOfCreation" class="form-control" />
+            <span asp-validation-for="@Model.DateOfCreation" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="@Model.IsActive" class="col-form-lable"></label>
+                <input asp-for="@Model.IsActive" class="form-control" />
+                
+            </div>
+            <br />
+        <a asp-action="Edit" class="btn btn-primary" asp-route-Id="@Model.Id">Update</a>
+            <a asp-action="Index" class="btn btn-primary">Back To List</a>
+       
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

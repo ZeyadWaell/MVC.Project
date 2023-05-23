@@ -1,0 +1,102 @@
+﻿@model IEnumerable<EmployeModelView>
+@inject IDepartmentRepostory depsRepos
+@{
+    ViewData["Title"] = "Detaile";
+    var Departments = new SelectList(depsRepos.GetAll().Result, "Id", "Name");
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>All Departments</h1>
+<br/>
+
+    
+<a class="btn btn-success" asp-action="Create" class="btn htn-primary">Create</a>
+<form class="my-3" asp-action="Index" asp-controller="Emplyee">
+    <div class="row">
+        <div class="col-sm-8">
+            <input placeholder="Serach By Name " name="SerachVlaue" class="form-control" />
+
+        </div>
+        <div class ="col-sm-4">
+            <input type ="submit" value="Search" class="btn btn-success btn-block" />
+        </div>
+    </div>
+
+</form>
+@if(Model?.Count()>0){
+    <table class = "table table-striped able-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(x=>x.Name)</th>
+                <th>@Html.DisplayNameFor(x=>x.Age)</th>
+                <th>@Html.DisplayNameFor(x=>x.Address)</th>
+                <th>@Html.DisplayNameFor(x=>x.Email)</th>
+                <th>@Html.DisplayNameFor(x=>x.Phone)</th>
+                <th>@Html.DisplayNameFor(x=>x.Salary)</th>
+                <th>@Html.DisplayNameFor(x=>x.Date)</th>
+                <th>@Html.DisplayNameFor(x=>x.DateOfCreation)</th>
+                <th>@Html.DisplayNameFor(x=>x.IsActive)</th>
+                <th>@Html.DisplayNameFor(x=>x.Department.Name)</th>
+                <th>Detiales</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Age
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Salary
+                    </td>
+                    <td>
+                        @item.Date
+                    </td>
+                    <td>
+                        @item.DateOfCreation
+                    </td>
+                    <td>
+                        @item.IsActive
+                    </td>
+                    <td>
+                        @item.Department?.Name
+                    </td>
+                    <td>
+                        <img src="~/ImageFolder/Img/@item.ImageUrl">
+                    </td>
+                    <td>
+                       <a class ="btn btn-success" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-eye">Details</i></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-eye">Delete</i></a>
+                    </td>
+                    <td>
+                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-eye">Update</i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}else{
+    <divclass ="alert alert-warning">
+        <h3>No Data Where Found</h3>
+    </divclass>
+}

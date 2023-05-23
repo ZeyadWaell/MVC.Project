@@ -1,0 +1,26 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "SignIn";
+    Layout = null;
+}
+
+<h1>SignIn</h1>
+
+<div class="main-agileinfo">
+    <div class="agileits-top">
+        <form asp-action="SignIn">
+            <input class="text email" type="email" asp-for="@Model.Email" placeholder="Email" required="" />
+            <input class="text " type="password" asp-for="@Model.Password" placeholder="Password" required="" />
+            <br />
+                      <div class="wthree-text">
+                <label class="anim">
+                    <input type="checkbox" asp-for="@Model.RememberMe" class="checkbox" required="" />
+                    <span>Remember Me</span>
+                </label>
+                <div class="clear"></div>
+            </div>
+            <input type="submit" vale="SignIn" />
+        </form>
+        <p><a asp-action="ForgetPassword" asp-controller="Account">Forget Password</a></p>
+    </div>
+</div>
